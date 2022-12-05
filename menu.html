@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sushi</title>
+    <!-- font awesome cdn link  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      @font-face {
+        font-family: "Shopper";
+        src: url("http://www.shopperfont.com/font/Shopper-Std.ttf");
+      }
+
+      .shopper {
+        text-transform: lowercase;
+        font: 2em "Shopper", sans-serif;
+        line-height: 0.5em;
+        display: inline-block;
+      }
+
+      #h1 {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 2.5em;
+      }
+
+      input {
+        border: 0.3em solid #bbc3c6;
+        padding: 0.5em 0.3em;
+        font-size: 1.4em;
+        color: #8a8a8a;
+        text-align: center;
+      }
+
+      img {
+        max-width: 9em;
+        width: 100%;
+        overflow: hidden;
+        margin-right: 1em;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .container1 {
+        max-width: 75em;
+        width: 95%;
+        margin: 40px auto;
+        overflow: hidden;
+        position: relative;
+
+        border-radius: 0.6em;
+        background: #000000;
+        box-shadow: 0 0.5em 0 rgba(138, 148, 152, 0.2);
+      }
+
+      .heading1 {
+        display: flex;
+        justify-content: space-between;
+        padding: 1em;
+        position: relative;
+        z-index: 1;
+        color: #f7f7f7;
+        background: #d3ad7f;
+      }
+
+      .cart {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 2.5em;
+        overflow: hidden;
+      }
+
+      .cart.is-closed {
+        height: 0;
+        margin-top: -2.5em;
+      }
+
+      .tf {
+        background: #d3ad7f;
+        text-transform: uppercase;
+        text-align: right;
+        font-size: 1.2em;
+      }
+
+      .col {
+        padding: 1em;
+        width: 12%;
+      }
+
+      .col-pro {
+        width: 80%;
+      }
+
+      .row > div {
+        vertical-align: middle;
+      }
+      .visibility-cart {
+        position: absolute;
+        color: #fff;
+        top: 0.5em;
+        right: 0.5em;
+        background: black;
+        font: bold 2em arial;
+        border: 0.16em solid #fff;
+        border-radius: 2.5em;
+        padding: 0 0.22em 0 0.25em;
+      }
+      #myOverlay {
+        display: none;
+      }
+      #part1 {
+        display: flex;
+        justify-content: space-around;
+      }
+      #part3 {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 5%;
+      }
+      .heads {
+        padding: 1em;
+        position: relative;
+        z-index: 1;
+        color: #010101;
+        background: #ffffff;
+      }
+      #part4 {
+        margin-top: 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      #prod {
+        display: flex;
+        justify-content: space-around;
+      }
+      @media screen and (max-width: 755px) {
+        .container {
+          width: 98%;
+        }
+
+        .col-pro {
+          width: 35%;
+        }
+
+        .col-qty {
+          width: 22%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <a href="#" class="logo">
+        <img src="assets/logo.png" alt="" />
+      </a>
+
+      <nav class="navbar">
+        <a href="index.html">home</a>
+        <a href="./about.html">about</a>
+        <a href="./menu.html">menu</a>
+        <a href="./chef.html">Chef</a>
+        <a href="./review.html">review</a>
+        <a href="./contact.html">contact</a>
+      </nav>
+
+      <div class="icons">
+        <button
+          style="background: none"
+          onclick="document.getElementById('myOverlay').style.display = 'block'"
+        >
+          <div class="fas fa-shopping-cart" id="cart-btn"></div>
+        </button>
+        <div class="fas fa-bars" id="menu-btn"></div>
+      </div>
+
+      <div class="search-form">
+        <input type="search" id="search-box" placeholder="search here..." />
+        <label for="search-box" class="fas fa-search"></label>
+      </div>
+
+      <div class="cart-items-container">
+        <div class="cart-item">
+          <span class="fas fa-times"></span>
+          <img src="assets/cart-item-1.png" alt="" />
+          <div class="content">
+            <h3>cart item 01</h3>
+            <div class="price">$15.99/-</div>
+          </div>
+        </div>
+        <div class="cart-item">
+          <span class="fas fa-times"></span>
+          <img src="assets/cart-item-2.png" alt="" />
+          <div class="content">
+            <h3>cart item 02</h3>
+            <div class="price">$15.99/-</div>
+          </div>
+        </div>
+        <div class="cart-item">
+          <span class="fas fa-times"></span>
+          <img src="assets/cart-item-3.png" alt="" />
+          <div class="content">
+            <h3>cart item 03</h3>
+            <div class="price">$15.99/-</div>
+          </div>
+        </div>
+        <div class="cart-item">
+          <span class="fas fa-times"></span>
+          <img src="assets/cart-item-4.png" alt="" />
+          <div class="content">
+            <h3>cart item 04</h3>
+            <div class="price">$15.99/-</div>
+          </div>
+        </div>
+        <a href="#" class="btn">checkout now</a>
+      </div>
+    </header>
+    <section class="menu" id="menu">
+      <h1 class="heading">our <span>menu</span></h1>
+
+      <div class="links">
+        <button class="buttonfilter" value="sushi" onclick="sushi()">
+          SUSHI
+        </button>
+        <button class="buttonfilter" value="entrer" onclick="entrer()">
+          ENTRER
+        </button>
+        <button class="buttonfilter" value="ramen" onclick="ramen()">
+          RAMEN
+        </button>
+      </div>
+
+      <div class="box-container">
+        <div class="box" id="sushi">
+          <img src="assets/menu1.jpg" alt="" />
+          <h3>tasty and healty</h3>
+          <div class="price">$10.99 <span>20.99</span></div>
+          <button
+            class="prix"
+            id="0"
+            onclick="addPlat(10.99,'tasty and healty')"
+          >
+            add to cart
+          </button>
+        </div>
+
+        <div class="box" id="sushi1">
+          <img src="assets/menu2.jpg" alt="" />
+          <h3>tasty and healty</h3>
+          <div class="price">$13.99 <span>20.99</span></div>
+          <button   
+          class="prix"
+          onclick="addPlat(13.99,'tasty and healty')">add to cart</button>
+        </div>
+
+        <div class="box" id="sushi2">
+          <img src="assets/menu3.jpg" alt="" />
+          <h3>tasty and healty</h3>
+          <div class="price">$15.99 <span>20.99</span></div>
+          <button class="prix" id="2" class="btn add"
+          onclick="addPlat(15.99,'tasty and healty')">add to cart</button>
+        </div>
+
+        <div class="box" id="entrer1">
+          <img src="assets/menu4.jpg" alt="" />
+          <h3>tasty and healty</h3>
+          <div class="price">$15.99 <span>20.99</span></div>
+          <button class="prix" id="3" class="btn add"   onclick="addPlat(15.99,'tasty and healty')">add to cart</button>
+        </div>
+
+        <div class="box" id="sushi3">
+          <img src="assets/menu5.jpg" alt="" />
+          <h3>tasty and healty</h3>
+          <div class="price">$19.99 <span>20.99</span></div>
+          <button class="prix" id="4" class="btn add"   onclick="addPlat(16.99,'tasty and healty')">add to cart</button>
+        </div>
+
+        <div class="box" id="entrer2">
+          <img src="assets/menu6.jpg" alt="" />
+          <h3>tasty and healty</h3>
+          <div class="price">$11.99 <span>20.99</span></div>
+          <button class="prix" id="5" class="btn add"   onclick="addPlat(11.99,'tasty and healty')">add to cart</button>
+        </div>
+      </div>
+    </section>
+    <div class="container1" id="myOverlay">
+      <div class="heading1">
+        <h1 id="h1"><span class="shopper">s</span> Shopping Cart</h1>
+
+        <button
+          style="background: none"
+          onclick="document.getElementById('myOverlay').style.display = 'none'"
+          class="visibility-cart transition is-open"
+        >
+          X
+        </button>
+      </div>
+
+      <div class="cart transition is-open">
+        <div class="heading1" id="part1">
+          <h1 id="h1">PRODUIT</h1>
+          <h1 id="h1">PRICE</h1>
+        </div>
+        <div class="prodct"></div>
+     
+
+        <div class="heading1" id="part3">
+          <h1 id="h1">TOTAL</h1>
+          <h1 id="h1" class="pricee">0$</h1>
+        </div>
+        <button class="prix" style="background: none" onclick="myFunction()">
+          <a href="#" class="btn add">confirm</a>
+        </button>
+      </div>
+    </div>
+    <section class="footer">
+      <div class="share">
+        <a href="#" class="fab fa-facebook-f"></a>
+        <a href="#" class="fab fa-twitter"></a>
+        <a href="#" class="fab fa-instagram"></a>
+        <a href="#" class="fab fa-linkedin"></a>
+        <a href="#" class="fab fa-pinterest"></a>
+      </div>
+
+      <div class="links">
+        <a href="#home">home</a>
+        <a href="#about">about</a>
+        <a href="#menu">menu</a>
+        <a href="#products">Chef</a>
+        <a href="#review">review</a>
+        <a href="#contact">contact</a>
+      </div>
+
+      <div class="credit">created by <span>. Fadwa</span></div>
+    </section>
+    <script src="./js/script.js"></script>
+    <script src="./js/scrip1.js"></script>
+    <script>
+      function addPlat(prix,name){
+          var product = document.getElementsByClassName('prodct')[0]
+          var price = document.getElementsByClassName('pricee')[0]
+          console.log(product)
+          console.log('fadwa');
+          product.innerHTML+=`
+          <div id="part4" class="heads">
+                <span class="prod">
+                  <h2 id="h2">${name}</h2>
+                  <h2 id="h2">${prix}$</h2>
+                </span>
+              </div>`
+              Total+=prix;
+              price.innerHTML = Total + '$';
+
+      }
+
+            function entrer() {
+              document.getElementById("sushi").style.display = "none";
+              document.getElementById("sushi1").style.display = "none";
+              document.getElementById("sushi2").style.display = "none";
+              document.getElementById("sushi3").style.display = "none";
+              document.getElementById("entrer1").style.display = "block";
+              document.getElementById("entrer2").style.display = "block";
+            }
+            function sushi() {
+              document.getElementById("sushi").style.display = "block";
+              document.getElementById("sushi1").style.display = "block";
+              document.getElementById("sushi2").style.display = "block";
+              document.getElementById("sushi3").style.display = "block";
+              document.getElementById("entrer1").style.display = "none";
+              document.getElementById("entrer2").style.display = "none";
+            }
+            function ramen() {
+              document.getElementById("sushi").style.display = "none";
+              document.getElementById("sushi1").style.display = "none";
+              document.getElementById("sushi2").style.display = "none";
+              document.getElementById("sushi3").style.display = "none";
+              document.getElementById("entrer1").style.display = "none";
+              document.getElementById("entrer2").style.display = "none";
+            }
+    </script>
+  </body>
+</html>
